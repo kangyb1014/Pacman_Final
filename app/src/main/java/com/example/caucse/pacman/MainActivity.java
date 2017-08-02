@@ -1,6 +1,8 @@
 package com.example.caucse.pacman;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -77,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
         Button button_left =(Button)findViewById(R.id.btn_left);
         Button button_right =(Button)findViewById(R.id.btn_right);
 
-
          num_of_coins = 99;
          pac_row = 13;
          pac_column = 6;
          pac_state = 1;
+        final SoundPool sound = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
+
+        final int s_coin = sound.load(this,R.raw.sound_coin,1);
 
 
         // map_state  0: wall 1:coin 2:empty 3:pacman
@@ -101,9 +105,10 @@ public class MainActivity extends AppCompatActivity {
                     next = pac_row - 1;
                 if(map_state[next][pac_column] == 1 || map_state[next][pac_column] == 2)
                 {
-                    if(map_state[next][pac_column] == 1)
+                    if(map_state[next][pac_column] == 1) {
                         num_of_coins--;
-
+                        sound.play(s_coin, 1.0F, 1.0F,  1,  0,  1.0F);
+                    }
                     map_state[pac_row][pac_column] = 2;
                     map[pac_row][pac_column].setImageResource(R.drawable.empty);
 
@@ -142,9 +147,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(map_state[next][pac_column] == 1 || map_state[next][pac_column] == 2)
                 {
-                    if(map_state[next][pac_column] == 1)
+                    if(map_state[next][pac_column] == 1) {
                         num_of_coins--;
-
+                        sound.play(s_coin, 1.0F, 1.0F,  1,  0,  1.0F);
+                    }
                     map_state[pac_row][pac_column] = 2;
                     map[pac_row][pac_column].setImageResource(R.drawable.empty);
 
@@ -182,9 +188,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(map_state[pac_row][next] == 1 || map_state[pac_row][next] == 2)
                 {
-                    if(map_state[pac_row][next] == 1)
+                    if(map_state[pac_row][next] == 1) {
                         num_of_coins--;
-
+                        sound.play(s_coin, 1.0F, 1.0F,  1,  0,  1.0F);
+                    }
                     map_state[pac_row][pac_column] = 2;
                     map[pac_row][pac_column].setImageResource(R.drawable.empty);
 
@@ -221,9 +228,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(map_state[pac_row][next] == 1 || map_state[pac_row][next] == 2)
                 {
-                    if(map_state[pac_row][next] == 1)
+                    if(map_state[pac_row][next] == 1) {
                         num_of_coins--;
-
+                        sound.play(s_coin, 1.0F, 1.0F,  1,  0,  1.0F);
+                    }
                     map_state[pac_row][pac_column] = 2;
                     map[pac_row][pac_column].setImageResource(R.drawable.empty);
 
